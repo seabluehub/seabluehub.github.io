@@ -2,7 +2,7 @@
 
 ## 1. 项目定位
 
-本仓库是 `ideafirm.github.io` GitHub Pages 个人主站项目，当前形态为可直接由 GitHub Pages 托管的静态站点。站点名称为“留给时间一点空间”，内容定位为个人数字花园，主要承载知识沉淀、工作心得、个人感悟、归档时间轴和作者介绍。
+本仓库是 `seabluehub.github.io` GitHub Pages 个人主站项目，当前形态为可直接由 GitHub Pages 托管的静态站点。站点名称为“留给时间一点空间”，内容定位为个人数字花园，主要承载知识沉淀、工作心得、个人感悟、归档时间轴和作者介绍。
 
 从现有文件判断，站点最初由 Hexo 3.8.0 和 `theme-ad` 主题生成，仓库中保留的是生成后的 HTML/CSS/JavaScript 静态产物，以及一部分 SCSS 样式源码。当前仓库没有完整 Hexo 源码目录、文章源文件、主题模板、`package.json` 或构建脚本，因此现阶段更适合按“静态产物维护型网站”管理。
 
@@ -167,7 +167,7 @@ window.AD_CONFIG = {
 flowchart LR
   A["本地编辑静态文件"] --> B["提交到 GitHub 仓库"]
   B --> C["GitHub Pages 读取根目录"]
-  C --> D["发布 ideafirm.github.io"]
+  C --> D["发布 seabluehub.github.io"]
   D --> E["浏览器加载 HTML/CSS/JS/CDN"]
 ```
 

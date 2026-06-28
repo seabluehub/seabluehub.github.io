@@ -1,4 +1,4 @@
-# ideafirm.github.io
+# seabluehub.github.io
 
 “留给时间一点空间”个人主站源码工程。
 
@@ -72,7 +72,7 @@ Settings -> Pages -> Build and deployment -> Source -> GitHub Actions
 1. 安装 npm 依赖
 2. 执行 `npm run build`
 3. 上传 `dist/` 为 Pages artifact
-4. 部署到 `https://ideafirm.github.io/`
+4. 部署到 `https://seabluehub.github.io/`
 
 ## 内容维护
 

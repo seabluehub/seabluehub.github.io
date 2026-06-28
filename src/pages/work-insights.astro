@@ -1,0 +1,20 @@
+---
+import PostList from '../components/PostList.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { categories, getPostsByCategory, getPublishedPostViews } from '../data/posts';
+
+const category = categories.find((item) => item.slug === 'work-insights')!;
+const posts = getPublishedPostViews(await getCollection('posts'));
+const categoryPosts = getPostsByCategory(posts, category.title);
+---
+
+<BaseLayout title={category.title} description={category.description}>
+  <article class="passage">
+    <h1 class="passage-title">{category.title}</h1>
+    <div class="passage-article">
+      <p>{category.description}</p>
+    </div>
+  </article>
+  <PostList posts={categoryPosts} />
+</BaseLayout>

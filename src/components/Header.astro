@@ -1,0 +1,52 @@
+---
+import { navItems, site } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="site-header-brand">
+    <span class="site-header-brand-title">
+      <a href="/">{site.title}</a>
+    </span>
+    <span class="site-header-brand-motto"> | {site.motto}</span>
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation" aria-label="主导航">
+      {navItems.map((item) => <a href={item.href} target="_self">{item.label}</a>)}
+    </nav>
+    <div class="site-header-btn">
+      <a href={site.github} target="_blank" id="site-github" title="Github">
+        <i class="fa fa-github-alt"></i>
+      </a>
+      <a href={site.x} target="_blank" id="site-twitter" title="X">
+        <svg viewBox="0 0 1200 1227" fill="currentColor" style="width: 1em; height: 1em; vertical-align: middle; margin-top: -2px;">
+          <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"></path>
+        </svg>
+      </a>
+      <a href={site.facebook} target="_blank" id="site-facebook" title="Facebook">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-search" title="搜索">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn" title="导航">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav class="table-content" id="site-nav" aria-label="移动端导航">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      {navItems.map((item) => (
+        <li class="toc-item">
+          <a href={item.href} target="_self">{item.label}</a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>

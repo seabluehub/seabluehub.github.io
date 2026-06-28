@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getPostUrl, toPostView } from '../../../../../data/posts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => {
+    const view = toPostView(post);
+    const [year, month, day] = view.date.split('-');
+    return {
+      params: { year, month, day, slug: view.slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const view = toPostView(post);
+const { Content } = await post.render();
+---
+
+<BaseLayout title={view.title} description={view.summary} isPost={true}>
+  <article class="passage">
+    <h1 class="passage-title">{view.title}</h1>
+    <div class="passage-meta">
+      <span><i class="fa fa-calendar"></i>{view.date}</span>
+      <span> | <i class="fa fa-folder"></i>{view.category}</span>
+      <span> | <i class="fa fa-unlock-alt"></i>{view.public ? 'PUBLIC' : 'PRIVATE'}</span>
+    </div>
+    <div class="passage-article">
+      <Content />
+    </div>
+    <div class="passage-tags">
+      {view.tags.map((tag) => (
+        <a href={`/archives/`}><i class="fa fa-tag"></i>{tag}</a>
+      ))}
+    </div>
+    <div class="passage-copyright">
+      <div>本文链接：<a href={view.url}>{new URL(getPostUrl(post), Astro.site).toString()}</a></div>
+      <div>版权声明：除特别说明外，本站内容由作者 YG 整理沉淀。</div>
+    </div>
+  </article>
+  <section class="site-comment-contanier" data-plateform="leancloud">
+    <div id="site-comment-info"></div>
+    <div id="site-comment"></div>
+  </section>
+</BaseLayout>

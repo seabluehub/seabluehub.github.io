@@ -1,0 +1,49 @@
+---
+import type { PostView } from '../data/posts';
+
+interface Props {
+  posts: PostView[];
+  emptyText?: string;
+}
+
+const { posts, emptyText = '内容正在整理归档中，敬请期待！' } = Astro.props;
+---
+
+{
+  posts.length > 0 ? (
+    <div class="home">
+      {posts.map((post) => (
+        <div class="home-article-wrapper clearfix">
+          <article class="home-article" data-cover="false">
+            <div class="home-article-inner" data-cover="false">
+              <div class="passage-meta">
+                <span><i class="fa fa-calendar"></i>{post.date}</span>
+                <span> | <i class="fa fa-unlock-alt"></i>{post.public ? 'PUBLIC' : 'PRIVATE'}</span>
+              </div>
+              <h1 class="home-article-title">
+                <a href={post.url}>{post.title}</a>
+              </h1>
+              <div class="home-article-content passage-article">
+                <p>{post.summary}</p>
+              </div>
+              <a class="home-article-read" href={post.url}>阅读全文 &gt;&gt;&gt;</a>
+            </div>
+          </article>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="home">
+      <div class="home-article-wrapper clearfix">
+        <div class="home-article" data-cover="false">
+          <div class="home-article-inner" data-cover="false">
+            <div class="home-article-content passage-article">
+              <p>{emptyText}</p>
+            </div>
+            <a class="home-article-read" href="/">返回首页 &gt;&gt;&gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

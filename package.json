@@ -1,0 +1,17 @@
+{
+  "name": "ideafirm-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.0.0",
+    "sass": "^1.83.0"
+  },
+  "devDependencies": {}
+}

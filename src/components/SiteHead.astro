@@ -1,0 +1,72 @@
+---
+import { adConfig, site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  isPost?: boolean;
+  lock?: boolean;
+  pageType?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  keywords = site.keywords,
+  isPost = false,
+  lock = false,
+  pageType = '',
+} = Astro.props;
+
+const pageTitle = title === site.title ? site.title : `${title} - ${site.title}`;
+const config = {
+  ...adConfig,
+  is_post: isPost,
+  lock,
+  page_type: pageType,
+};
+---
+
+<meta name="generator" content="Astro" />
+<meta charset="utf-8" />
+<meta name="author" content={site.author} />
+<title>{pageTitle}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="keywords" content={keywords} />
+<meta name="description" content={description} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={isPost ? 'article' : 'website'} />
+<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+<script
+  type="text/javascript"
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
+  async
+></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+
+<script define:vars={{ config }}>
+  window.AD_CONFIG = config;
+</script>
+
+<script is:inline src="/vendor/sha256.min.js"></script>
+<script is:inline src="/js/auth.js"></script>
+<script is:inline src="/js/index.js"></script>
+<script is:inline src="/vendor/qrcode.min.js"></script>
+
+<link rel="icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/images/touch-icon.png" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css" />
+
+<script is:inline>
+  (function () {
+    var savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>

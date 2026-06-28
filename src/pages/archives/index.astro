@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getArchiveTree, getPublishedPostViews } from '../../data/posts';
+
+const posts = getPublishedPostViews(await getCollection('posts'));
+const archiveTree = getArchiveTree(posts);
+const years = Object.keys(archiveTree).sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="时间轴">
+  <section class="timeline">
+    <h1 class="timeline-title">时间轴</h1>
+    {years.map((year) => (
+      <>
+        <h2 class="timeline-subtitle">
+          <a href={`/archives/${year}/`}>{year}</a>
+        </h2>
+        {Object.keys(archiveTree[year]).sort((a, b) => Number(b) - Number(a)).map((month) => (
+          archiveTree[year][month].map((post) => (
+            <div class="timeline-item">
+              <time>{`${month}-${post.date.split('-')[2]}`}</time>
+              <a href={post.url}>{post.title}</a>
+            </div>
+          ))
+        ))}
+      </>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import { navItems, site } from '../data/site';
+---
+
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    <div class="site-footer-col">
+      <h5 class="site-footer-title">栏目导航</h5>
+      <span class="site-footer-item"><a href="/knowledge/">知识沉淀</a></span>
+      <span class="site-footer-item"><a href="/work-insights/">工作心得</a></span>
+    </div>
+    <div class="site-footer-col">
+      <h5 class="site-footer-title">更多阅读</h5>
+      <span class="site-footer-item"><a href="/reflections/">个人感悟</a></span>
+      <span class="site-footer-item"><a href="/archives/">时间轴历史</a></span>
+    </div>
+    <div class="site-footer-col">
+      <h5 class="site-footer-title">联系作者</h5>
+      <span class="site-footer-item"><a href="/about/">关于 {site.author}</a></span>
+      <span class="site-footer-item"><a href={site.github} target="_blank">GitHub</a></span>
+      <span class="site-footer-item"><a href={site.x} target="_blank">X</a></span>
+      <span class="site-footer-item"><a href={site.facebook} target="_blank">Facebook</a></span>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 从 2008 年至今，本站已沉淀记录<span id="site-time"></span>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-at"></i> Email: {site.email}
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i>
+      2026 {site.title}. Created by {site.author}. All rights reserved.
+    </div>
+  </footer>
+</div>

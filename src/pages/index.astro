@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { categories, getPublishedPostViews } from '../data/posts';
+
+const posts = getPublishedPostViews(await getCollection('posts'));
+---
+
+<BaseLayout>
+  <div class="home">
+    <div class="home-article-wrapper clearfix">
+      <article class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span><i class="fa fa-calendar"></i>2008-01-01 至今</span>
+            <span> | <i class="fa fa-unlock-alt"></i>PUBLIC</span>
+          </div>
+          <h1 class="home-article-title">
+            <a href="/about/">欢迎来到：留给时间一点空间</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            <p>你好，我是 <b>YG</b>。这里是我的个人网站，主要记录了我从 2008 年至今，十几年来在工作与生活中的点点滴滴。</p>
+            <p>
+              在此，你可以探索我的：<br />
+              - <b>知识沉淀</b>：专业技能、项目经验与学习笔记。<br />
+              - <b>工作心得</b>：职场感悟、管理经验与做事方法论。<br />
+              - <b>个人感悟</b>：生活随笔、读书笔记与人生思考。
+            </p>
+            <p>留给时间一点空间，让我们在文字的温度里共同成长、相遇。</p>
+          </div>
+          <a class="home-article-read" href="/about/">了解更多 &gt;&gt;&gt;</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="home-article-wrapper clearfix">
+      <article class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <h1 class="home-article-title">内容入口</h1>
+          <div class="home-article-content passage-article">
+            <ul>
+              {categories.map((category) => (
+                <li>
+                  <a href={`/${category.slug}/`}>{category.title}</a>：{category.summary}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    {posts.length > 0 && (
+      <div class="home-article-wrapper clearfix">
+        <article class="home-article" data-cover="false">
+          <div class="home-article-inner" data-cover="false">
+            <h1 class="home-article-title">最近更新</h1>
+            <div class="home-article-content passage-article">
+              <ul>
+                {posts.map((post) => (
+                  <li>
+                    <time>{post.date}</time> <a href={post.url}>{post.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    )}
+  </div>
+</BaseLayout>
